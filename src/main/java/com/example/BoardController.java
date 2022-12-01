@@ -16,9 +16,10 @@ public class BoardController {
     @Autowired
     BoardDAO boardDAO;
 
-    @RequestMapping("/")
-    public String home(){
-        return "index";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model model){
+        model.addAttribute("list", boardDAO.getBoardList());
+        return "board/list";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
